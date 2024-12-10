@@ -36,7 +36,9 @@ def weather_forecast():
     if not responses:
         return jsonify({'error': 'Błąd API pogodowego'}), 500
     response = responses[0]
+    print(response)
     daily = response.Daily()
+    print(daily)
     daily_temperature_2m_max = daily.Variables(0).ValuesAsNumpy().astype(float)
     daily_temperature_2m_min = daily.Variables(1).ValuesAsNumpy().astype(float)
     daily_sunshine_duration = daily.Variables(2).ValuesAsNumpy().astype(float)
