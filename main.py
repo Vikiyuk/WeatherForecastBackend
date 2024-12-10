@@ -1,3 +1,6 @@
+import datetime
+
+import pytz
 from flask import Flask, jsonify, request
 import requests
 import pandas as pd
@@ -6,7 +9,7 @@ import requests_cache
 from retry_requests import retry
 from flask_cors import CORS
 
-
+utc_now = datetime.utcnow().replace(tzinfo=pytz.utc)
 
 
 
