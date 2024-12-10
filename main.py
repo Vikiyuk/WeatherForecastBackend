@@ -32,13 +32,12 @@ def weather_forecast():
         "longitude": longitude,
         "daily": ["temperature_2m_max", "temperature_2m_min", "sunshine_duration", "precipitation_sum", "weathercode"]
     }
+    dir(openmeteo)
     responses = openmeteo.weather_api(url, params=params)
     if not responses:
         return jsonify({'error': 'Błąd API pogodowego'}), 500
     response = responses[0]
-    print(response)
     daily = response.Daily()
-    print(daily)
     daily_temperature_2m_max = daily.Variables(0).ValuesAsNumpy().astype(float)
     daily_temperature_2m_min = daily.Variables(1).ValuesAsNumpy().astype(float)
     daily_sunshine_duration = daily.Variables(2).ValuesAsNumpy().astype(float)
